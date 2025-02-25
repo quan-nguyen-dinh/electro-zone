@@ -11,6 +11,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+// limport { Switch } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -18,6 +19,9 @@ import AdminLayout from "./layout/AdminLayout";
 import { protectedRoute, publicRouters, rejectedRoute } from "./router";
 import "./scss/style.scss";
 import { isAdmin } from "./utils/auth";
+import FrontStoreLayout from "./layout/FrontStoreLayout";
+import Signin from "./views/auth/signin";
+import Signup from "./views/auth/signup";
 //const Header = lazy(() => import("./components/Header"));
 //const TopMenu = lazy(() => import("./components/TopMenu"));
 const HomeView = lazy(() => import("./views/Home"));
@@ -62,50 +66,21 @@ function App() {
   console.log(localStorage.getItem('role')==='admin');
   return (
     <BrowserRouter>
-      {isAdmin ? (
+      <Routes>
+        <Route path="/signin" element={<Signin />}/>
+        <Route path="/singup" element={<Signup />} />
+        <Route path="/" element={<FrontStoreLayout />} />
+      </Routes>
+      {/* {isAdmin && (
         <AdminLayout />
-      ) : (
-        <Suspense fallback={
-          <CContainer><Skeleton count={5} height={100}/></CContainer>
-        }>
-          <Header />
-          {/* <TopMenu /> */}
-          <Suspense
-            fallback={
-              <CContainer><Skeleton count={5} height={100}/></CContainer>
-            }
-          >
-            <Routes>
-              {publicRouters.map((item, index) => {
-                if (!item.type) {
-                  console.log("path", item);
-
-                  return (
-                    <Route
-                      key={index}
-                      path={item.path}
-                      element={<item.component />}
-                    />
-                  );
-                }
-                if (item.type === protectedRoute)
-                  return (
-                    <Route key={index} path="" element={<ProtectedRoute />}>
-                      <Route path={item.path} element={<item.component />} />
-                    </Route>
-                  );
-                else if (item.type === rejectedRoute)
-                  return (
-                    <Route key={index} path="" element={<RejectedRoute />}>
-                      <Route path={item.path} element={<item.component />} />
-                    </Route>
-                  );
-              })}
-            </Routes>
-          </Suspense>
-          <Footer />
-        </Suspense>
-      )}
+        
+      // ) : (
+      //   <Suspense fallback={
+      //     <CContainer><Skeleton count={5} height={100}/></CContainer>
+      //   }>
+      //     <FrontStoreLayout />
+      //   </Suspense>
+      // )} */}
     </BrowserRouter>
   );
 }
