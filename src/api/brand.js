@@ -1,8 +1,8 @@
-import { instanceAxios } from "@api/shared";
+import { instanceAxios } from '@api/shared';
 
 export const getBrandApi = async () => {
   try {
-    const data = await instanceAxios.get("category/show");
+    const data = await instanceAxios.get('category/show');
     return data;
   } catch (error) {
     return Promise.reject(error);
@@ -10,7 +10,7 @@ export const getBrandApi = async () => {
 };
 export const createBrandApi = async (body) => {
   try {
-    const data = await instanceAxios.post("/create", body);
+    const data = await instanceAxios.post('/create', body);
     return data;
   } catch (error) {
     return Promise.reject(error);
@@ -18,7 +18,7 @@ export const createBrandApi = async (body) => {
 };
 export const updateBrandApi = async (body) => {
   try {
-    const data = await instanceAxios.put("/update", body);
+    const data = await instanceAxios.put('/update', body);
     return data;
   } catch (error) {
     return Promise.reject(error);
@@ -26,7 +26,7 @@ export const updateBrandApi = async (body) => {
 };
 export const deleteBrandApi = async (idCate) => {
   try {
-    const data = await instanceAxios.get("/delete", idCate);
+    const data = await instanceAxios.get('/delete', idCate);
     return data;
   } catch (error) {
     return Promise.reject(error);
