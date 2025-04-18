@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/quan-nguyen-dinh/electro-zone-frontend.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/quan-nguyen-dinh/computer.git
